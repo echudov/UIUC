@@ -18,6 +18,15 @@ Allocator::Allocator(const std::string& studentFile, const std::string& roomFile
     loadRooms(roomFile);
 }
 
+Allocator::~Allocator() {
+    if (alpha != NULL) {
+        delete[] alpha;
+    }
+    if (rooms != NULL) {
+        delete[] rooms;
+    }
+}
+
 void Allocator::createLetterGroups()
 {
     // Make letters (A - Z lettergroups)
@@ -55,7 +64,6 @@ void Allocator::loadRooms(const std::string& file)
         i++; 
     }
 }
-
 
 void Allocator::printStudents(std::ostream & stream /* = std::cout */)
 {
