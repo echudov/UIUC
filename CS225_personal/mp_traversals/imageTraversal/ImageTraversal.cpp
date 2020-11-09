@@ -83,25 +83,25 @@ ImageTraversal::Iterator &ImageTraversal::Iterator::operator++()
     {
       traversal_->pop();
     }
-    if (right.isValid(width_, height_) &&
+    if (isValid(right, width_, height_) &&
         calculateDelta(image_.getPixel(right.x, right.y), image_.getPixel(start_.x, start_.y)) <= tolerance_ &&
         !seen(right))
     {
       traversal_->add(right);
     }
-    if (below.isValid(width_, height_) &&
+    if (isValid(below, width_, height_) &&
         calculateDelta(image_.getPixel(below.x, below.y), image_.getPixel(start_.x, start_.y)) <= tolerance_ &&
         !seen(below))
     {
       traversal_->add(below);
     }
-    if (left.isValid(width_, height_) &&
+    if (isValid(left, width_, height_) &&
         calculateDelta(image_.getPixel(left.x, left.y), image_.getPixel(start_.x, start_.y)) <= tolerance_ &&
         !seen(left))
     {
       traversal_->add(left);
     }
-    if (above.isValid(width_, height_) &&
+    if (isValid(above, width_, height_) &&
         calculateDelta(image_.getPixel(above.x, above.y), image_.getPixel(start_.x, start_.y)) <= tolerance_ &&
         !seen(above))
     {
@@ -148,4 +148,9 @@ bool ImageTraversal::Iterator::operator!=(const ImageTraversal::Iterator &other)
     otherEmpty = other.traversal_->empty();
 
   return !(thisEmpty && otherEmpty);
+}
+
+bool ImageTraversal::Iterator::isValid(const Point &p, const unsigned int width, const unsigned int height)
+{
+  return (p.x >= 0 && p.x < width) && (p.y >= 0 && p.y < height);
 }

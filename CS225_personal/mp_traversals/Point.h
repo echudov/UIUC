@@ -46,11 +46,6 @@ struct Point
   {
     return (x == other.x && y == other.y);
   }
-
-  bool isValid(const unsigned int width, const unsigned int height)
-  {
-    return (x >= 0 && x < width) && (y >= 0 && y < height);
-  }
 };
 
 /**

@@ -34,6 +34,7 @@ public:
     Iterator();
     Iterator(ImageTraversal *traversal, Point &start, double &tolerance, PNG &image);
 
+    bool isValid(const Point &p, const unsigned int width, const unsigned int height);
     Iterator &operator++();
     Point operator*();
     bool operator!=(const Iterator &other);
